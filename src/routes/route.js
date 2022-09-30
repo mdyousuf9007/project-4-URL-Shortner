@@ -8,6 +8,7 @@ const urlController=require('../controller/urlController')
 
 
 router.post("/test-me", urlController.createUrl)
+router.get('/:urlCode',urlController.getUrl)
 
 
 module.exports=router

@@ -1,7 +1,12 @@
 const urlModel = require('../model/urlModel')
 const shortId = require('shortid')
-const validurl = require('valid-url')
 const url = require('validator')
+
+
+
+const urlregex = /^[A-Za-z0-9 _\-]{7,14}$/
+
+
 
 
 
@@ -28,7 +33,7 @@ const createUrl = async function (req, res) {
 
         let checkurl = await urlModel.findOne({ longUrl: data.longUrl })
         if (checkurl) {
-            return res.status(409).send({ status: false, msg: "longUrl is alresdy exist" })
+            return res.status(409).send({ status: false, msg: "this url is already exist", shortUrl: checkurl.shortUrl })
         }
 
         let urlCode = shortId.generate().toLowerCase()
@@ -41,11 +46,27 @@ const createUrl = async function (req, res) {
 
         let createData = await urlModel.create(data)
 
-        res.send({ data: createData })
+       return res.status(201).send({ status:true,data: createData })
     }
     catch (err) {
         return res.status(500).send({ msg: err.message })
     }
 }
 
+
+const getUrl= async function(req,res){
+    let urlCode=req.params.urlCode
+   
+    
+
+
+    let urlData= await urlModel.findOne({urlCode:urlCode})
+    if(!urlData){
+        return res.status(404).send({status:false,msg:"URL not found"})
+    }
+   
+   return res.status(302).redirect(urlData.longUrl)
+}
+
 module.exports.createUrl = createUrl
+module.exports.getUrl=getUrl
