@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": " nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -17,10 +18,13 @@
   },
   "homepage": "https://github.com/Upendra731996/project-4-urlShortnerGroup69#readme",
   "dependencies": {
+    "axios": "^0.27.2",
     "express": "^4.18.1",
     "mongoose": "^6.6.2",
     "nodemon": "^2.0.20",
+    "redis": "^3.1.2",
     "shortid": "^2.2.16",
+    "util.promisify": "^1.1.1",
     "valid-url": "^1.0.9",
     "validator": "^13.7.0"
   }

@@ -1,7 +1,5 @@
 const mongoose= require('mongoose')
 
-//{ urlCode: { mandatory, unique, lowercase, trim }, longUrl: {mandatory, valid url}, shortUrl: {mandatory, unique} }
-
 const urlSchema= new mongoose.Schema({
     urlCode:{
         type:String,
